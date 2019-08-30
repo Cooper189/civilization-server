@@ -25,6 +25,13 @@ app.get('/test', (req, res) => {
 
 app.use( bodyParser.json() );  
 
+app.use(express.static(path.join(__dirname, 'dist/civilization')));
+
+// app.use('/api', proxy('http://127.0.0.1:8000/'));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/civilization/index.html'));
+});
 // app.post('/get-all', (req, res) => {
 //     if (!req.body) {
 //         res.statusCode = 400;
