@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng build && node index.js",
+    "start": "node index.js",
+    "postinstall": "ng build --aot -prod",
+    "heroku-postbuild": "ng build --prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -19,6 +21,8 @@
     "@angular/platform-browser": "~8.0.1",
     "@angular/platform-browser-dynamic": "~8.0.1",
     "@angular/router": "~8.0.1",
+    "@angular/cli": "~8.0.3",
+    "@angular/compiler-cli": "~8.0.1",
     "rxjs": "~6.4.0",
     "socket.io-client": "^2.2.0",
     "tslib": "^1.9.0",
@@ -26,7 +30,8 @@
     "express": "^4.17.1",
     "express-http-proxy": "^1.5.1",
     "ngx-socket-io": "^2.1.1",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "typescript": "~3.4.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.800.0",
