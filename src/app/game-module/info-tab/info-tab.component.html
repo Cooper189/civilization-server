@@ -1,0 +1,13 @@
+<div *ngIf="unit" class="tab">
+    <div>
+        <img [attr.src]="unit.img">
+
+    </div>
+    <div>
+        HP: {{unit.hp}}
+    </div>
+    <div>
+        Moves: {{unit.move}}
+    </div>
+    <button (click)="cityCreate()">Create city</button>
+</div>

@@ -1,0 +1,22 @@
+<div class="city">
+    <img class="city-image" [attr.src]="state$?.img">
+    <div class="city-info">
+        <div>Level: {{state$?.cityLevel}}</div>
+        <div>Progress: {{state$?.foodLevel}}</div>
+        <div>Food: {{state$?.food}}</div>
+        <div>Manufacture: {{state$?.manufacture}}</div>
+    </div>
+    <div class="city-build">
+        <div *ngFor="let building of buildings" class="city-build-section" (click)="addToProd(building)">
+            <span><img [attr.src]="building?.img"></span>
+            <span>{{building?.name}} </span>
+            <span>cost: {{building?.cost}} </span>
+        </div>
+    </div>
+    <div *ngIf="state$?.processing">
+        Processing: 
+        <span><img [attr.src]="state$?.processing?.img"></span>
+        <span>{{state$?.processing?.name}} </span>
+        <span>cost: {{state$?.processing?.cost}} </span>
+    </div>
+</div>

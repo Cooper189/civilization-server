@@ -1,0 +1,14 @@
+.game {
+    position: absolute;
+    cursor: pointer;
+    z-index: 1000;
+}
+.field {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #d6d4d4;
+}
+img {
+    width: 100px;
+    height: 100px;
+}
