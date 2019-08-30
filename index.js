@@ -43,4 +43,4 @@ const io = sio.listen(server);
 
 io.sockets.on('connection', socketService);
 
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+server.listen(process.env.PORT || port) //port, () => console.log(`API running on localhost:${port}`));
