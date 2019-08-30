@@ -17,7 +17,7 @@ const connectionOptions =  {
 
 @Injectable()
 export class SocketService {
-  private url = 'https://civilization-server.herokuapp.com';
+  private url = '/';
   public socket;
   public matrix = new Subject<any>();
   public unit = new Subject<any>();

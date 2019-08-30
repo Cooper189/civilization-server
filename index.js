@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 
 
 const port = '4500';
-app.set('port', port);
+app.set('port', process.env.PORT || port);
 
 const server = http.createServer(app);
 
