@@ -1,0 +1,14 @@
+{
+  "name": "gvint",
+  "version": "0.0.0",
+  "scripts": {
+    "live": "nodemon index.js"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.5.1",
+    "ngx-socket-io": "^2.1.1",
+    "socket.io": "^2.2.0"
+  }
+}

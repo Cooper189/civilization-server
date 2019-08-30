@@ -1,0 +1,40 @@
+[
+    {
+        "name": "ambar",
+        "cost": 8,
+        "img": "./assets/img/ambar.png",
+        "type": "building",
+        "bonuses": {
+            "method": "addFood",
+            "value": 1
+        }
+    },
+    {
+        "name": "monument",
+        "cost": 60,
+        "img": "./assets/img/monument.png",
+        "type": "building",
+        "bonuses": {
+            "method": "addFood",
+            "value": 1
+        }
+    },
+    {
+        "name": "Scout",
+        "cost": 30,
+        "type": "unit",
+        "img": "./assets/img/Scout.png",
+        "hp": 100, 
+        "strength": 10,
+        "basePoints": 3
+    },
+    {
+        "name": "Spearman",
+        "cost": 45,
+        "type": "unit",
+        "img": "./assets/img/Spearman.png",
+        "hp": 150, 
+        "strength": 25,
+        "basePoints": 2
+    }
+]
