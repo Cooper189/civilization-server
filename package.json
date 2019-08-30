@@ -2,6 +2,8 @@
   "name": "gvint",
   "version": "0.0.0",
   "scripts": {
+    "start": "node index.js",
+    "test": "node test.js",
     "live": "nodemon index.js"
   },
   "private": true,
