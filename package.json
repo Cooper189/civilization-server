@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "node index.js",
-    "postinstall": "ng build --aot -prod",
-    "heroku-postbuild": "ng build --prod",
+    "postinstall": "ng build",
+    "heroku-postbuild": "ng build",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
