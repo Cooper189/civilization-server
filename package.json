@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "node index.js",
-    "postinstall": "ng build",
-    "heroku-postbuild": "ng build",
+    "postinstall": "ng build --prod",
+    "live": "nodemon server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

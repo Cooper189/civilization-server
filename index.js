@@ -27,19 +27,10 @@ app.use( bodyParser.json() );
 
 app.use(express.static(path.join(__dirname, 'dist/civilization')));
 
-// app.use('/api', proxy('http://127.0.0.1:8000/'));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/civilization/index.html'));
 });
-// app.post('/get-all', (req, res) => {
-//     if (!req.body) {
-//         res.statusCode = 400;
-//         return res.send('None shall pass');
-//     }
-//     res.json(pull[req.body.user]);
-// });
-
 
 const port = '4500';
 app.set('port', process.env.PORT || port);
@@ -50,4 +41,4 @@ const io = sio.listen(server);
 
 io.sockets.on('connection', socketService);
 
-server.listen(process.env.PORT || port) //port, () => console.log(`API running on localhost:${port}`));
+server.listen(process.env.PORT || port, () => console.log(`API running on localhost:${process.env.PORT || port}`));

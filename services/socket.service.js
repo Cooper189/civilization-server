@@ -1,11 +1,11 @@
 const landscapeService = require("./landscape");
-const landscape = new landscapeService();
 const buildings = require('../db/buildings.json');
 
 
 const socketService = (socket) => {
     
         console.log('socket connect');
+        const landscape = new landscapeService();
     
         socket.on('user', (message) => {
             socket.emit('unit', landscape.units);
