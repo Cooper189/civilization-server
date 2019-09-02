@@ -36,5 +36,14 @@
         "hp": 150, 
         "strength": 25,
         "basePoints": 2
+    },
+    {
+        "name": "Builder",
+        "cost": 8,
+        "type": "builder",
+        "img": "./assets/img/Builder.png",
+        "hp": 150, 
+        "strength": 25,
+        "basePoints": 2
     }
 ]

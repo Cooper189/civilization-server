@@ -13,7 +13,6 @@ export class FieldComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.field);
   }
   public takeField() {
     this.fieldOnClick.emit(this.position);

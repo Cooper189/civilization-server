@@ -26,7 +26,8 @@ const socketService = (socket) => {
         });
         socket.on('createBuilding', (unit) => {
             socket.emit('createBuilding', landscape.createConstruction(unit));
-            // socket.emit('getMatrix', landscape.matrix);
+            socket.emit('unit', landscape.units);
+            socket.emit('city', landscape.city);
         });
 
         socket.on('nextMove', () => {

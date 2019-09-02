@@ -1,20 +1,20 @@
 const getNewCity = require("./helpers");
 
-const exc = (x, y, temp) => {
+const exc = (y, x, temp) => {
     if ((x >= 0 && y >= 0) && (x <= 9 && y <= 9) ) {
-        temp.push({x: x, y: y}) 
+        temp.push({y: y, x: x}) 
     }
 }
-const getCloses = (x, y) => {
+const getCloses = (y, x) => {
     const temp = [];
-    exc(x-1, y-1, temp);
-    exc(x, y-1, temp);
-    exc(x+1, y-1, temp);
-    exc(x-1,y, temp);
-    exc(x+1, y, temp);
-    exc(x-1, y+1, temp);
-    exc(x, y+1, temp);
-    exc(x+1, y+1, temp);
+    exc(y-1, x-1, temp);
+    exc(y, x-1, temp);
+    exc(y+1, x-1, temp);
+    exc(y-1,x, temp);
+    exc(y+1, x, temp);
+    exc(y-1, x+1, temp);
+    exc(y, x+1, temp);
+    exc(y+1,x+1, temp);
 
     return temp;
 }
@@ -42,7 +42,7 @@ class CreatUnit {
         this.basePoints = el.processing.basePoints;
         this.strength = el.processing.strength;
         this.move = el.processing.basePoints;
-        this.type = null;
+        this.type = el.processing.type;
         this.id = (Math.round(Math.random() * 100)).toString();
     }
 }
@@ -64,15 +64,14 @@ class LandscapeService {
             }
             arr.push(arrs);
         }
-        arr[2][0].food = 5;
         this.matrix = arr;
         return this.matrix ;
     }
     canMove(from, to) {
         if (from.move === 0) return false;
-        const closes = getCloses(from.x, from.y);
+        const closes = getCloses(from.y, from.x);
         return closes.some(item => {
-            return (item.x === to.x) && (item.y === to.y);
+            return (item.y === to.y) && (item.x === to.x);
         });
     }
 
@@ -99,14 +98,24 @@ class LandscapeService {
         return this.units;
     }
     createConstruction(unit) {
-        this.matrix[unit.x][unit.y].building = './assets/img/Farm.png';
-        this.matrix[unit.x][unit.y].food++;
-        unit = {...unit, ...this.matrix[unit.x][unit.y]};
+        this.units = this.units.map(item => {
+            if (item.id === unit.id) {
+                item.move = 0;
+                return item;
+            }
+            return item;
+        });
+        this.matrix[unit.y][unit.x].building = './assets/img/Farm.png';
+        this.matrix[unit.y][unit.x].food++;
+        unit = {...unit, ...this.matrix[unit.y][unit.x]};
+        this.cityRebase();
         return unit;
     }
     cityRebase() {
         this.city.forEach(city => {
-            getCloses(unit.y, unit.x).forEach(el => {
+            city.food = 0;
+            city.manufacture = 0;
+            getCloses(city.y, city.x).forEach(el => {
                 city.food += this.matrix[el.y][el.x].food;
                 city.manufacture += this.matrix[el.y][el.x].manufacture;
             });
@@ -118,11 +127,10 @@ class LandscapeService {
               return item;
             }
         });
-        console.log(unit);
         const city = new getNewCity(unit);
-        getCloses(unit.x, unit.y).forEach(el => {
-            city.food += this.matrix[el.x][el.y].food;
-            city.manufacture += this.matrix[el.x][el.y].manufacture;
+        getCloses(unit.y, unit.x).forEach(el => {
+            city.food += this.matrix[el.y][el.x].food;
+            city.manufacture += this.matrix[el.y][el.x].manufacture;
         });
         this.city.push(city);
     }

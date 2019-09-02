@@ -27,7 +27,6 @@ export class CityPageComponent implements OnInit {
   }
 
   public addToProd(building) {
-    console.log(this.state$.id);
     this.service.socket.emit('addToProd', {build: building, id: this.state$.id});
   }
 }

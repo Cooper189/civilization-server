@@ -9,5 +9,6 @@
     <div>
         Moves: {{unit.move}}
     </div>
-    <button (click)="cityCreate()">Create city</button>
+    <button *ngIf="unit.type === 'city'" (click)="cityCreate()">Create city</button>
+    <button  *ngIf="unit.type === 'builder'" (click)="createBuilding()">Create Farm</button>
 </div>

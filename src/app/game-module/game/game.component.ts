@@ -32,7 +32,6 @@ export class GameComponent implements OnInit {
   }
 
   public processing(event) {
-    console.log(event);
     if (this.processingEvent) {
       this.service.socket.emit('unitCanMove', {from: this.processingEvent, to: event});
       this.processingEvent = null;
@@ -40,7 +39,6 @@ export class GameComponent implements OnInit {
   }
 
   public processingAdd(event) {
-    console.log(event);
     this.processingEvent = event;
   }
 

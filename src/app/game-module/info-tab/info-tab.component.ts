@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class InfoTabComponent implements OnInit {
   @Input() unit: any;
   @Output() create = new EventEmitter<any>();
+  @Output() build = new EventEmitter<any>();
 
   constructor() { }
 
@@ -16,6 +17,9 @@ export class InfoTabComponent implements OnInit {
 
   public cityCreate() {
     this.create.emit(true);
+  }
+  public createBuilding() {
+    this.build.emit(true);
   }
 
 }
