@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-list-of-buildinds',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-of-buildinds.component.scss']
 })
 export class ListOfBuildindsComponent implements OnInit {
+  @Input() prodactions: any;
+  @Output() elementChange = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public addToProd(element) {
+    this.elementChange.emit(element);
   }
 
 }

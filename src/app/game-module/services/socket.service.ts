@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GameModule } from '../game.module';
 
 import * as io from 'socket.io-client';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 const connectionOptions =  {
@@ -24,15 +24,17 @@ export class SocketService {
   public city = new Subject<any>();
 
   constructor() {
-    console.log('socket');
     this.socket = io(this.url, connectionOptions);
     this.socket.emit('user', {user: '1111'});
+
     this.socket.on('getMatrix', (message) => {
         this.matrix.next(message);
     });
+
     this.socket.on('unit', (message) => {
         this.unit.next(message);
     });
+
     this.socket.on('city', (message) => {
       this.city.next(message);
     });

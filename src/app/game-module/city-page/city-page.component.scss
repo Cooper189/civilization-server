@@ -1,17 +1,8 @@
 .city {
-    &-build {
-        &-section {
-            height: 50px;
-            display: flex;
-            width: 50%;
-            border: 1px solid #a2a2f5;
-            cursor: pointer;
-            img {
-                height: 50px;
-            }
-            span {
-                margin: 0 10px;
-            }
-        }
+    display: flex;
+}
+.processing {
+    img {
+        width: 20px;
     }
 }

@@ -1,4 +1,4 @@
-const getNewCity = require("./cityCreator");
+const getNewCity = require("./helpers");
 
 const exc = (x, y, temp) => {
     if ((x >= 0 && y >= 0) && (x <= 9 && y <= 9) ) {
@@ -23,6 +23,7 @@ class FieldGrass {
     constructor() {
         this.food = 1;
         this.manufacture = 1;
+        this.building = null;
     }
 }
 
@@ -32,11 +33,6 @@ class CityMethods {
     }
 }
 
-// class CreateBulder {
-//     constructor(build) {
-//         type: 
-//     }
-// }
 class CreatUnit {
     constructor(el) {
         this.x = el.x;
@@ -44,6 +40,7 @@ class CreatUnit {
         this.img = el.processing.img;
         this.hp = 100;
         this.basePoints = el.processing.basePoints;
+        this.strength = el.processing.strength;
         this.move = el.processing.basePoints;
         this.type = null;
         this.id = (Math.round(Math.random() * 100)).toString();
@@ -52,7 +49,7 @@ class CreatUnit {
 
 class LandscapeService {
     constructor() {
-        this.units = [{x: 0, y: 0, img: './assets/img/Scout.png', id: '1', hp: 100, basePoints: 2,  move: 2},
+        this.units = [{x: 0, y: 0, img: './assets/img/Scout.png', strength: 5, id: '1', hp: 100, basePoints: 2,  move: 2},
         {x: 0, y: 2, img: './assets/img/Settler.png', id: '2', hp: 100, basePoints: 1, move: 1, type: 'city'}];
         this.city = [];
         this.matrix = [];
@@ -67,6 +64,7 @@ class LandscapeService {
             }
             arr.push(arrs);
         }
+        arr[2][0].food = 5;
         this.matrix = arr;
         return this.matrix ;
     }
@@ -100,12 +98,27 @@ class LandscapeService {
         });
         return this.units;
     }
+    createConstruction(unit) {
+        this.matrix[unit.x][unit.y].building = './assets/img/Farm.png';
+        this.matrix[unit.x][unit.y].food++;
+        unit = {...unit, ...this.matrix[unit.x][unit.y]};
+        return unit;
+    }
+    cityRebase() {
+        this.city.forEach(city => {
+            getCloses(unit.y, unit.x).forEach(el => {
+                city.food += this.matrix[el.y][el.x].food;
+                city.manufacture += this.matrix[el.y][el.x].manufacture;
+            });
+        })
+    }
     createCity(unit) {
         this.units = this.units.filter(item => {
             if (item.id !== unit.id) {
               return item;
             }
         });
+        console.log(unit);
         const city = new getNewCity(unit);
         getCloses(unit.x, unit.y).forEach(el => {
             city.food += this.matrix[el.x][el.y].food;
@@ -132,14 +145,16 @@ class LandscapeService {
             item.move = item.basePoints;
             return item;
         });
+
         this.city.forEach(el => {
             if (el.buildings) {
                 el.buildings.forEach(elm => {
-                    console.log('-------before', el);
                     CityMethods[elm.bonuses.method](el, elm.bonuses.value);
-                    console.log('-------after', el);
                 });
             }
+
+            el.foodLevel += el.food;
+
             if (el.foodLevel >= 100 ) {
                 el.foodLevel -= 100;
                 el.cityLevel++
@@ -152,7 +167,6 @@ class LandscapeService {
                 }
             }
             
-            el.foodLevel += el.food;
         })
     }
 }

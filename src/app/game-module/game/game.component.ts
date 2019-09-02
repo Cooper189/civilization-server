@@ -10,7 +10,7 @@ import { SocketService } from '../services/socket.service';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  public fieldMatrix: Array<Array<'string'>>;
+  public fieldMatrix: Array<Array<any>>;
   public units = [];
   public processingEvent: any;
   public citys = [];
@@ -40,12 +40,22 @@ export class GameComponent implements OnInit {
   }
 
   public processingAdd(event) {
+    console.log(event);
     this.processingEvent = event;
   }
 
   public createCity() {
     if (this.processingEvent.type) {
       this.service.socket.emit('createCity', this.processingEvent);
+      this.processingEvent = null;
+    }
+  }
+  public createBuilding() {
+    if (this.processingEvent.type) {
+      this.service.socket.emit('createBuilding', this.processingEvent);
+      this.service.socket.on('createBuilding', (item) => {
+        this.fieldMatrix[item.y][item.x] = item;
+      });
       this.processingEvent = null;
     }
   }

@@ -6,12 +6,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./field.component.scss']
 })
 export class FieldComponent implements OnInit {
+  @Input() field: any;
   @Input()position: any;
   @Output()fieldOnClick = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.field);
   }
   public takeField() {
     this.fieldOnClick.emit(this.position);

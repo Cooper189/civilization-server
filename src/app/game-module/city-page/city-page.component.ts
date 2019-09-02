@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { SocketService } from '../services/socket.service';
 
 @Component({
@@ -14,7 +13,6 @@ export class CityPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private service: SocketService) {
     this.service.socket.on('cityData', (data) => {
-      console.log(data);
       this.state$ = data;
     });
     this.service.socket.on('available', (buildings) => {
