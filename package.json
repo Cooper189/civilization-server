@@ -1,6 +1,6 @@
 {
   "name": "civilization",
-  "version": "0.0.1",
+  "version": "0.0.18",
   "scripts": {
     "ng": "ng",
     "start": "node index.js",

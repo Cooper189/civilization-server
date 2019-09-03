@@ -14,5 +14,4 @@ export class UnitDirective implements OnInit {
     this.ref.nativeElement.style.top = `${this.unit.x * 100}px`;
     this.ref.nativeElement.style.left = `${this.unit.y * 100}px`;
   }
-
 }
