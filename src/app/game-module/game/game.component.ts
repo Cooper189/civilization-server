@@ -57,7 +57,7 @@ export class GameComponent implements OnInit {
     if (this.processingEvent.type) {
       this.service.socket.emit('createBuilding', this.processingEvent);
       this.service.socket.on('createBuilding', (item) => {
-        this.fieldMatrix[item.y][item.x] = item;
+        this.fieldMatrix[item.x][item.y] = item;
       });
       this.processingEvent = null;
     }

@@ -1,10 +1,10 @@
-<div class="game">
-    <div *ngFor="let items of fieldMatrix; let int = index">
-        <div *ngFor="let item of items; let i = index" class="position"><app-field (fieldOnClick)="processing($event)" [position]="{x: i, y: int}" [field]="item"></app-field></div>
+<div>
+    <div *ngFor="let items of fieldMatrix; let int = index" class="game">
+        <div *ngFor="let item of items; let i = index" class="position"><app-field (fieldOnClick)="processing($event)" [position]="{x: int, y: i}" [field]="item"></app-field></div>
     </div>
 </div>
 <app-unit-field *ngFor="let unit of units" [player]="unit" (unitOnClick)="processingAdd($event)"></app-unit-field>
 <app-info-tab [unit]="processingEvent" (create)="createCity()" (build)="createBuilding()"></app-info-tab>
 <app-city class="index" *ngFor="let city of citys" [appUnit]="city" [cityObj]="city" (moveOnField)="processing($event)"></app-city>
 <button class="next-move" (click)="nextMove()">Next Move</button>
-<button (click)="saveGame()">Save game</button>
+<!-- <button (click)="saveGame()">Save game</button> -->
