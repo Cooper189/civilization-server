@@ -11,8 +11,6 @@ export class AddImageDirective implements OnInit {
 
   ngOnInit() {
     const some = {
-      width: '100px',
-      height: '100px',
       backgroundPosition: 'center',
       backgroundSize: 'contain',
       backgroundImage: `url('${this.imageUrl}')`,

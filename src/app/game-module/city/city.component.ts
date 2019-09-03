@@ -16,7 +16,7 @@ export class CityComponent implements OnInit {
   }
 
   public feildOnClick() {
-    this.router.navigate(['/city', this.cityObj.id]);
+    this.router.navigate(['/game/city', this.cityObj.id]);
     this.moveOnField.emit({x: this.cityObj.x, y: this.cityObj.y});
   }
 

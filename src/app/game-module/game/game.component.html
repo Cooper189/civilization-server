@@ -5,5 +5,6 @@
 </div>
 <app-unit-field *ngFor="let unit of units" [player]="unit" (unitOnClick)="processingAdd($event)"></app-unit-field>
 <app-info-tab [unit]="processingEvent" (create)="createCity()" (build)="createBuilding()"></app-info-tab>
-<app-city *ngFor="let city of citys" [appUnit]="city" [cityObj]="city" (moveOnField)="processing($event)"></app-city>
-<button (click)="nextMove()">Next Move</button>
+<app-city class="index" *ngFor="let city of citys" [appUnit]="city" [cityObj]="city" (moveOnField)="processing($event)"></app-city>
+<button class="next-move" (click)="nextMove()">Next Move</button>
+<button (click)="saveGame()">Save game</button>

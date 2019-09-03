@@ -2,6 +2,10 @@
     position: absolute;
     cursor: pointer;
     z-index: 1000;
+    &-unit {
+        width: 100px;
+        height: 100px;
+    }
 }
 .field {
     width: 100px;

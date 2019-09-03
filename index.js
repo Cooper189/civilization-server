@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
-const fs = require('fs');
 const bodyParser = require("body-parser");
 const sio = require("socket.io");
 const socketService = require("./services/socket.service");
@@ -19,16 +18,19 @@ app.use((req, res, next) => {
     }
 });
 
-app.get('/test', (req, res) => {
-    res.send('Hello!');
-});
-
 app.use( bodyParser.json() );  
 
 app.use(express.static(path.join(__dirname, 'dist/civilization')));
 
+app.post('/user', (req, res) => {
+    if (req.body.user !== '1111') {
+        res.statusCode = 400;
+        return res.send('None shall pass');
+    }
+    res.send(JSON.stringify({status: "Done"}));
+});
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/civilization/index.html'));
 });
 

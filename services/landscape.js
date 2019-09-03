@@ -1,4 +1,7 @@
 const getNewCity = require("./helpers");
+const fs = require('fs');
+const saveGame = require('../db/save.json');
+
 
 const exc = (y, x, temp) => {
     if ((x >= 0 && y >= 0) && (x <= 9 && y <= 9) ) {
@@ -48,14 +51,15 @@ class CreatUnit {
 }
 
 class LandscapeService {
-    constructor() {
-        this.units = [{x: 0, y: 0, img: './assets/img/Scout.png', strength: 5, id: '1', hp: 100, basePoints: 2,  move: 2},
+    constructor(id) {
+        this.units = saveGame[id.user].units || [{x: 0, y: 0, img: './assets/img/Scout.png', strength: 5, id: '1', hp: 100, basePoints: 2,  move: 2},
         {x: 0, y: 2, img: './assets/img/Settler.png', id: '2', hp: 100, basePoints: 1, move: 1, type: 'city'}];
-        this.city = [];
-        this.matrix = [];
+        this.city = saveGame[id.user].city || [];
+        this.matrix = saveGame[id.user].matrix || [];
     }
 
     getNewMatrix() {
+        if (this.matrix.length > 1) return this.matrix;
         const arr = [];
         for (let index = 0; index < 10; index++) {
             const arrs = [];
@@ -147,6 +151,18 @@ class LandscapeService {
     }
     createBuilding(el) {
         el.buildings.push(el.processing);
+    }
+    save(id, socket) {
+        saveGame[id.user] = {
+            matrix:  this.matrix,
+            units: this.units,
+            city: this.city
+        };
+        fs.writeFile('./db/save.json', JSON.stringify(saveGame), (err) => {
+            if (err) {
+                console.log(err);
+            }
+        });
     }
     nextMove() {
         this.units = this.units.map(item => {

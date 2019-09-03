@@ -2,3 +2,18 @@
     display: flex;
     position: relative;
 }
+.index {
+    z-index: 9;
+}
+.next-move {
+    background-color: #fd3d3d;
+    padding: 10px;
+    color: #fbf8f8;
+    font-size: 1.2em;
+    border-radius: 18px;
+    border: 2px solid #9696ea;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    cursor: pointer;
+}

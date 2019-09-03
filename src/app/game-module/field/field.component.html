@@ -2,5 +2,5 @@
     <img src="./assets/img/grass.png">
     <div class="field-content">{{field.food}} <img src="./assets/img/food.png"></div>
     <div class="field-content">{{field.manufacture}} <img src="./assets/img/production.png"></div>
-    <div class="field-building"><img [attr.src]="field.building"></div>
+    <div class="field-building" [appAddImage]="field.building"></div>
 </div>

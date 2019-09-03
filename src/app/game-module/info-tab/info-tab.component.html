@@ -1,4 +1,6 @@
 <div *ngIf="unit" class="tab">
+    <button *ngIf="unit.type === 'city'" (click)="cityCreate()">Create city</button>
+    <button  *ngIf="unit.type === 'builder'" (click)="createBuilding()">Create Farm</button>
     <div>
         <img [attr.src]="unit.img">
 
@@ -9,6 +11,4 @@
     <div>
         Moves: {{unit.move}}
     </div>
-    <button *ngIf="unit.type === 'city'" (click)="cityCreate()">Create city</button>
-    <button  *ngIf="unit.type === 'builder'" (click)="createBuilding()">Create Farm</button>
 </div>

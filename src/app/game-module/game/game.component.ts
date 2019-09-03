@@ -48,6 +48,11 @@ export class GameComponent implements OnInit {
       this.processingEvent = null;
     }
   }
+
+  public saveGame() {
+    this.service.socket.emit('save');
+  }
+
   public createBuilding() {
     if (this.processingEvent.type) {
       this.service.socket.emit('createBuilding', this.processingEvent);

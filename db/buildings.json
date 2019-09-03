@@ -45,5 +45,6 @@
         "hp": 150, 
         "strength": 25,
         "basePoints": 2
-    }
+    },
+    {"x": 0, "y": 2, "cost": 8, "img": "./assets/img/Settler.png", "hp": 100, "basePoints": 1, "type": "city"}
 ]
