@@ -22,6 +22,7 @@ const socketService = (socket) => {
     });
 
     socket.on('createCity', (unit) => {
+        if (landscape.canBuild(unit)) return;
         landscape.createCity(unit);
         socket.emit('unit', landscape.units);
         socket.emit('city', landscape.city);

@@ -71,6 +71,16 @@ class LandscapeService {
         this.matrix = arr;
         return this.matrix ;
     }
+
+    canBuild(city) {
+        const closes = getCloses(city.x, city.y);
+        return closes.some(el => {
+            return this.city.some(element => {
+                return (element.x === el.x) && (element.y === el.y)
+            });
+        });
+    }
+
     canMove(from, to) {
         if (from.move === 0) return false;
         const closes = getCloses(from.x, from.y);

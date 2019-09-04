@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('id', this.login);
         this.router.navigate(['/game']);
       }, err => {
-        console.log('No');
+        console.log(err);
       });
     }
   }
