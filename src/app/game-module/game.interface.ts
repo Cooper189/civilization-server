@@ -38,6 +38,7 @@ export interface ICity {
     manufacture: number;
     id: string;
     buildings: Array<IBuilding>;
+    processing?: IUnit;
 }
 
 export interface IField {
