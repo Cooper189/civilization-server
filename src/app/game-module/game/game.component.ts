@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../services/socket.service';
+import { IField, IUnit, ICity, IPosition } from '../game.interface';
 
 
 
@@ -10,19 +11,19 @@ import { SocketService } from '../services/socket.service';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  public fieldMatrix: Array<Array<any>>;
+  public fieldMatrix: Array<Array<IField>>;
   public units = [];
-  public processingEvent: any;
+  public processingEvent: IUnit;
   public citys = [];
 
   constructor(private service: SocketService) {
-    this.service.matrix.subscribe(item => {
+    this.service.matrix.subscribe((item: Array<Array<IField>>) => {
       this.fieldMatrix = item;
     });
-    this.service.unit.subscribe(units => {
+    this.service.unit.subscribe((units: Array<IUnit>) => {
       this.units = units;
     });
-    this.service.city.subscribe(city => {
+    this.service.city.subscribe((city: Array<ICity>) => {
       this.citys = city;
     });
   }
@@ -31,7 +32,7 @@ export class GameComponent implements OnInit {
     this.service.socket.emit('rebase');
   }
 
-  public processing(event) {
+  public processing(event: IField) {
     if (this.processingEvent) {
       this.service.socket.emit('unitCanMove', {from: this.processingEvent, to: event});
       this.processingEvent = null;
@@ -56,7 +57,7 @@ export class GameComponent implements OnInit {
   public createBuilding() {
     if (this.processingEvent.type) {
       this.service.socket.emit('createBuilding', this.processingEvent);
-      this.service.socket.on('createBuilding', (item) => {
+      this.service.socket.on('createBuilding', (item: IField) => {
         this.fieldMatrix[item.x][item.y] = item;
       });
       this.processingEvent = null;

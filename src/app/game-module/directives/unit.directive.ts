@@ -1,10 +1,11 @@
 import { Directive, Input, ElementRef, OnInit } from '@angular/core';
+import { IUnit } from '../game.interface';
 
 @Directive({
   selector: '[appUnit]'
 })
 export class UnitDirective implements OnInit {
-  @Input('appUnit') unit;
+  @Input('appUnit') unit: IUnit;
 
   constructor(private ref: ElementRef) {
   }

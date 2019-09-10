@@ -4,7 +4,7 @@ import { Directive, Input, ElementRef, OnInit } from '@angular/core';
   selector: '[appAddImage]'
 })
 export class AddImageDirective implements OnInit {
-  @Input('appAddImage') imageUrl;
+  @Input('appAddImage') imageUrl: string;
 
   constructor(private elementRef: ElementRef) {
   }

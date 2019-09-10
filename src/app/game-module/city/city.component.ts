@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { IPosition, ICity } from '../game.interface';
 
 @Component({
   selector: 'app-city',
@@ -7,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./city.component.scss']
 })
 export class CityComponent implements OnInit {
-  @Input() cityObj: any;
-  @Output() moveOnField = new EventEmitter<any>();
+  @Input() cityObj: ICity;
+  @Output() moveOnField = new EventEmitter<IPosition>();
 
   constructor(private router: Router) { }
 
@@ -19,5 +20,4 @@ export class CityComponent implements OnInit {
     this.router.navigate(['/game/city', this.cityObj.id]);
     this.moveOnField.emit({x: this.cityObj.x, y: this.cityObj.y});
   }
-
 }

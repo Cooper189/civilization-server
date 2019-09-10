@@ -3,6 +3,7 @@ import { GameModule } from '../game.module';
 
 import * as io from 'socket.io-client';
 import { Subject } from 'rxjs';
+import { IField, IUnit, ICity } from '../game.interface';
 
 
 const connectionOptions =  {
@@ -27,15 +28,15 @@ export class SocketService {
     this.socket = io(this.url, connectionOptions);
     this.socket.emit('user', {user: '1111'});
 
-    this.socket.on('getMatrix', (message) => {
+    this.socket.on('getMatrix', (message: Array<Array<IField>>) => {
         this.matrix.next(message);
     });
 
-    this.socket.on('unit', (message) => {
+    this.socket.on('unit', (message: Array<IUnit>) => {
         this.unit.next(message);
     });
 
-    this.socket.on('city', (message) => {
+    this.socket.on('city', (message: Array<ICity>) => {
       this.city.next(message);
     });
   }

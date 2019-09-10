@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IUnit } from '../game.interface';
 
 @Component({
   selector: 'app-info-tab',
@@ -6,9 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./info-tab.component.scss']
 })
 export class InfoTabComponent implements OnInit {
-  @Input() unit: any;
-  @Output() create = new EventEmitter<any>();
-  @Output() build = new EventEmitter<any>();
+  @Input() unit: IUnit;
+  @Output() create = new EventEmitter<boolean>();
+  @Output() build = new EventEmitter<boolean>();
 
   constructor() { }
 

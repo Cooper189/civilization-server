@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IUnit } from '../game.interface';
 
 @Component({
   selector: 'app-unit-field',
@@ -6,8 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./unit-field.component.scss']
 })
 export class UnitFieldComponent implements OnInit {
-  @Input()player: any;
-  @Output() unitOnClick = new EventEmitter<any>();
+  @Input() player: IUnit;
+  @Output() unitOnClick = new EventEmitter<IUnit>();
 
   constructor() {
   }

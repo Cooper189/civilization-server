@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IPosition, IField } from '../game.interface';
 
 @Component({
   selector: 'app-field',
@@ -6,9 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./field.component.scss']
 })
 export class FieldComponent implements OnInit {
-  @Input() field: any;
-  @Input()position: any;
-  @Output()fieldOnClick = new EventEmitter<any>();
+  @Input() field: IField;
+  @Input() position: IPosition;
+  @Output() fieldOnClick = new EventEmitter<IPosition>();
 
   constructor() { }
 
